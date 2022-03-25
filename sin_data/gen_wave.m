@@ -19,6 +19,11 @@ function gen_wave(postive, fs, freq, pts, amp_max)
     
     IQData(1:2:2*pts) = real(data) .* amp_max;
     IQData(2:2:2*pts) = imag(data) .* amp_max;
+    for i = 1 : length(IQData)
+       if IQData(i) == amp_max
+            IQData(i) = amp_max - 1;
+       end
+    end
    
     file_name = sprintf([''...
         , unit_text(fs, 0, 1000, 'fs_') ...
